@@ -1,6 +1,7 @@
 package com.example.spring.weather.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ public class WeatherControllerimpl {
 	@Autowired
 	WeatherSearch weatherSearch;
 	
-	@GetMapping("/weather/{city}")
+	@GetMapping(value ="/weather/{city}", produces = {MediaType.APPLICATION_JSON_VALUE})
 	String getWeatherOfCity(@PathVariable("city")String city) {
 		
 		String json = weatherSearch.searchCityData(city);
@@ -27,7 +28,7 @@ public class WeatherControllerimpl {
 		return json;
 	}
 	
-	@GetMapping("/weather/hourly/{city}")
+	@GetMapping(value ="/weather/hourly/{city}", produces = {MediaType.APPLICATION_JSON_VALUE})
 	String getWeatherOfCityHourly(@PathVariable("city")String city) {
 		
 		String json = weatherSearch.searchCityData(city);
